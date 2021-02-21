@@ -1,65 +1,88 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Layout from '../components/Layout';
+import Image from 'next/image';
+import { css } from '@emotion/react';
+
+const title = css`
+  display: grid;
+  color: grey;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 100px;
+`;
+
+const brandImages = css`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-left: 50px;
+  margin-right: 50px;
+  grid-column-gap: 30px;
+  padding-top: 100px;
+
+  .fender-image {
+    border: 1px solid #fffafa;
+    border-radius: 5px;
+    padding-left: 90px;
+    box-shadow: 0 0 10px;
+  }
+
+  .yamaha-image {
+    border: 1px solid #fffafa;
+    border-radius: 5px;
+    padding-left: 100px;
+    padding-right: 0px;
+    box-shadow: 0 0 10px;
+  }
+
+  .gibson-image {
+    border: 1px solid #fffafa;
+    border-radius: 5px;
+    padding-left: 130px;
+    box-shadow: 0 0 10px;
+  }
+`;
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Home Page</title>
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+      <div css={title}>
+        <h1>Welcome Home!</h1>
+        <p>
+          In Europe's biggest music store you'll find a huge range of
+          instruments as well as studio-, light- and sound technology. <br />
+          We have the most popular brands, low-priced alternatives, and many
+          free extras for musicians.
         </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      </div>
+      <div css={brandImages}>
+        <div className="fender-image">
+          <Image
+            src="/../public/fender-3.svg"
+            alt="Picture of the author"
+            width={300}
+            height={300}
+          />
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+        <div className="yamaha-image">
+          <Image
+            src="/../public/yamaha-12.svg"
+            alt="Picture of the author"
+            width={300}
+            height={300}
+          />
+        </div>
+        <div className="gibson-image">
+          <Image
+            src="/../public/gibson-1.svg"
+            alt="Picture of the author"
+            width={250}
+            height={300}
+          />
+        </div>
+      </div>
+    </Layout>
+  );
 }
