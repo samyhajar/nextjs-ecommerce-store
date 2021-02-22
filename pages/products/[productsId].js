@@ -3,6 +3,13 @@ import Layout from '../../components/Layout';
 import Image from 'next/image';
 import { css } from '@emotion/react';
 
+const productStyles = css`
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+  padding-left: 20px;
+`;
+
 export default function SingleProductInfo(props) {
   console.log(props);
   return (
@@ -10,20 +17,23 @@ export default function SingleProductInfo(props) {
       <Head>
         <title>Single product Page</title>
       </Head>
-
-      <h1>Single product page </h1>
       <div>
-        <Image
-          src={props.productInfo.url}
-          alt="lala"
-          width="550"
-          height="300"
-        />
-        <br />
-        {props.productInfo.model}
-        <br />
-        <br />
-        {props.productInfo.description}
+        {/* <h1>Single product page </h1> */}
+        <div css={productStyles}>
+          {props.productInfo.model}
+          <br />
+          {props.productInfo.description}
+          <br />
+          <br />
+          <Image
+            src={props.productInfo.url}
+            alt="lala"
+            width="550"
+            height="300"
+          />
+          {props.productInfo.list}
+          <br />
+        </div>
       </div>
     </Layout>
   );
