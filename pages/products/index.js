@@ -1,11 +1,8 @@
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import { css } from '@emotion/react';
-import { getProductInformation } from '../../database';
 import Image from 'next/image';
 import Link from 'next/link';
-
-const products = getProductInformation();
 
 const productStyles = css`
   display: flex;
@@ -17,18 +14,29 @@ const productStyles = css`
   } */
 
   .grid__container {
+    background: #f5f7fa;
+    border-radius: 12px;
+    border-color: transparent;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
     flex-grow: 1;
     border: 1px solid #dddddd;
-    /* grid-gap: 10px; */
     justify-self: center;
     max-width: 300px;
     height: auto;
     padding: 50px;
-    margin: 2px;
+    margin: 20px;
+    margin-left: 50px;
   }
 
   .description {
     white-space: nowrap;
+    color: #9883e5;
+    padding-bottom: 6px;
+  }
+
+  .description-2 {
+    color: grey;
+    font-size: 16px;
   }
 
   .image {
@@ -42,7 +50,7 @@ const productStyles = css`
   }
 `;
 
-export default function Products() {
+export default function Products(props) {
   return (
     <Layout>
       <Head>
@@ -50,7 +58,7 @@ export default function Products() {
       </Head>
       <h1 className="title">Products Page</h1>
       <div css={productStyles}>
-        {products.map((product) => (
+        {props.productsInfo.map((product) => (
           <div className="grid__container" key={`product-page-${product.id}`}>
             <div className="fix-width">
               <Image
@@ -65,7 +73,7 @@ export default function Products() {
             <div className="description">
               <Link href={`/products/${product.id}`}>{product.model}</Link>
             </div>
-            <div className="description">{product.description}</div>
+            <div className="description-2">{product.description}</div>
 
             <div className="span-line">{product.price}</div>
           </div>
@@ -74,3 +82,13 @@ export default function Products() {
     </Layout>
   );
 }
+
+export async function getServerSideProps(context) {
+  const { getProductInformation } = await import('../../util/database');
+  const productsInfo = await getProductInformation();
+  return {
+    props: { productsInfo }, // will be passed to the page component as props
+  };
+}
+
+//

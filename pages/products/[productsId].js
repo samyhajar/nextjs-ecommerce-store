@@ -31,7 +31,7 @@ export default function SingleProductInfo(props) {
             width="550"
             height="300"
           />
-          {props.productInfo.list}
+          <div>{props.productInfo.body}</div>
           <br />
         </div>
       </div>
@@ -40,11 +40,11 @@ export default function SingleProductInfo(props) {
 }
 
 export async function getServerSideProps(context) {
-  const { getProductInformation } = await import('../../database');
+  const { getProductInformation } = await import('../../util/database');
 
-  const id = context.query.productsId;
+  const id = parseInt(context.query.productsId);
 
-  const productsInfo = getProductInformation();
+  const productsInfo = await getProductInformation();
   const productInfo = productsInfo.find((member) => member.id === id);
   return {
     props: { productInfo }, // will be passed to the page component as props
