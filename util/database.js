@@ -1,4 +1,3 @@
-import camelcaseKeys from 'camelcase-keys';
 import postgres from 'postgres';
 
 require('dotenv-safe').config();

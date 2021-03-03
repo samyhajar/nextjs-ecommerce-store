@@ -1,4 +1,4 @@
-const brand = [{ name: 'Fender' }, { name: 'Ibanez' }, { name: 'Gibson' }];
+const brand = [{ name: 'Fender' }, { name: 'Ibanez' }, { name: 'Gibson' }, {}];
 
 exports.up = async (sql) => {
   await sql`
